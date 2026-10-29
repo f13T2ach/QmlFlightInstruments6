@@ -8,8 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install-target")
 
 # Set your QT Install Location and Version Tag Here! /Users/${username}/Qt/6.11.0/macos is a typical macOS installation
-set(QT_INSTALL_LOCATION "/Users/aerospyke/Qt/6.11.0/macos")
-set(QT_VERSION_TO_USE 6.11)
+# X:\\Qt\\6.12.0\\mingw_64 is a typical Windows installation
+set(QT_INSTALL_LOCATION "D:\\Qt\\6.12.0\\mingw_64")
+set(QT_VERSION_TO_USE 6.12)
 # Set your custom build information here (Bundle ID and Icon Path are needed for macOS deployment)
 set(APPLICATION_URI flight_instruments_demo)
 set(APPLICATION_BUNDLE_GUI_ID de.conorco.flight_instruments_demo)

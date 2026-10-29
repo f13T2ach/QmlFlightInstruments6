@@ -1,10 +1,14 @@
 # QML Flight Instruments
 
-This an update of [Berkbavas QML port](https://github.com/berkbavas/QmlFlightInstruments)
+This is a submodule project, supports my another project **flight**
+
+This project provides more components and features.
+
+This is an update of [Berkbavas QML port](https://github.com/berkbavas/QmlFlightInstruments)
 of [Marek M. Cel](http://marekcel.pl/)'
 s [QFlightinstruments](https://github.com/marek-cel/QFlightinstruments). This update:
 
-- Is compatible with Qt6 (tested against 6.11.0). This required many changes, including the replacement of the Qt Quick
+- Is compatible with Qt6 (tested against 6.12.0). This required many changes, including the replacement of the Qt Quick
   Extras CircularGauge with a custom circular gauge.
 - Replaces the Qt project structure with a pure CMake build system
 - The Flight Instruments are now in a seperate module. The demo app has been updated to reflect this change.
@@ -32,15 +36,14 @@ SVG files are from Marek's repository. See `application/ui/images/LICENSE` for c
 
 ## Building (standalone demo)
 
-1. Install **Qt 6.11.0**.
+1. Install **Qt 6.11.0** or **Qt 6.12.0**.
 2. Open `CMakeLists.txt` in **Your IDE Of Choice**.
 3. Update the root `CMakeLists.txt` file to reflect your **QT_INSTALL_LOCATION** and **QT_VERSION_TO_USE**
     - Optionally, update **APPLICATION_URI**, **APPLICATION_BUNDLE_GUI_ID** and **APPLICATION_ICON_PATH** for macOS
       deployment
 4. Build and run the project.
 
-I have only test on macOS so far, but plan on building in Linux in the near future. Testing on Windows would be
-appreciated!
+Tested on macOS, Windows. **Aerospyke** claims that it would be also transplanted to linux platform.
 
 ## Usage Guide
 
@@ -52,7 +55,7 @@ points:
         - for example, if you copied the module to ${project_root}/qml-flight-instruments,
 
 ```cmake 
-      add_subdirectory(${CMAKE_SOURCE_DIR}/qml-flight-instruments)
+      add_subdirectory(${CMAKE_SOURCE_DIR}/QmlFlightInstruments6)
 ```
 
 2. Link the module/static library
@@ -106,6 +109,7 @@ See `FlightInstruments/CMakeLists.txt` for the exact target name and alias (
 
 ## Credits & License
 
+- Transplanted by  [qml-flight-instruments](https://github.com/Aerospyke/qml-flight-instruments).
 - Original code and SVGs by Marek M. Cel. See [QFlightinstruments](https://github.com/marek-cel/QFlightinstruments).
 - Additional gauges and QML port by this project.
 - This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

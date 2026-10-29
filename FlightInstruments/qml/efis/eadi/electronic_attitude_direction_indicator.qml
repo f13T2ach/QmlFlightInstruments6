@@ -90,4 +90,17 @@ Item {
     height: 10
     color: "#000000"
   }
+
+  // When the instrument is scaled up, the brown horizon can bleed through the
+  // antialiased edge of the 300x300 component as a ~1px line. An opaque black
+  // frame extending 2px past the edges hides it, similar to a glass bezel.
+  Rectangle {
+    x: -2
+    y: -2
+    width: 304
+    height: 304
+    color: "transparent"
+    border.color: "#000000"
+    border.width: 4
+  }
 }
