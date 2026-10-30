@@ -32,7 +32,9 @@ qt_add_qml_module(QmlFlightInstruments
         # C++ type(s) that should be usable from QML when the module is imported.
         SOURCES
         include/primary_flight_data.h
+        include/qml_registration.h
         src/primary_flight_data.cpp
+        src/qml_registration.cpp
         QML_FILES
         qml/basic_six_root_display.qml
         qml/efis_root_display.qml

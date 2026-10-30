@@ -70,10 +70,17 @@ set(LINKED_LIBRARIES_INTERNAL
 3. Because the instruments are delivered as a *static* library, you must also call Q_INIT_RESOURCE from one of your
    executable's .cpp files (typically the very first thing in main(), before creating the QGuiApplication
    or QQmlApplicationEngine). This is required so that the images, fonts, and legacy qrc:/qml/... paths are registered.
+   Immediately after that, call `FlightInstruments::registerQmlTypes()` to register the QML-file based instrument types
+   (`AirspeedIndicatorBasicSix`, `EgtFuelFlowGauge`, ...). The module's generated qmldir only lists C++ types, so this
+   call is required before any QML file imports `FlightInstruments`. The helper enumerates the aliases in the library's
+   qrc at runtime, so instruments added to the library are registered automatically.
 
-```C++ 
-  Q_INIT_RESOURCE(QmlFlightInstruments);
-  ```
+```C++
+#include "qml_registration.h"
+
+Q_INIT_RESOURCE(QmlFlightInstruments);
+FlightInstruments::registerQmlTypes();
+```
 
 4. Loading QML Resources in the consuming app
 

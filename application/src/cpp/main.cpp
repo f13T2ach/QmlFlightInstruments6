@@ -3,6 +3,7 @@
 
 #include "animation.h"
 #include "primary_flight_data.h"
+#include "qml_registration.h"
 
 int main(int argc, char* argv[]) {
   // Initialize resources from the static QmlFlightInstruments module.
@@ -10,6 +11,9 @@ int main(int argc, char* argv[]) {
   // static library). It is required for the images, fonts, and legacy
   // qrc:/qml/... paths used by the instrument components.
   Q_INIT_RESOURCE(QmlFlightInstruments);
+
+  // Register the QML-file based instrument types shipped with the static module.
+  FlightInstruments::registerQmlTypes();
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
