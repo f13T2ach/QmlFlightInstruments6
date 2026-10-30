@@ -5,8 +5,14 @@ Item {
   height: 2 * radius
 
   required property double radius
+
+  // Normalized inputs, -1..1 (see PrimaryFlightData).
   property double turnRate: 0
   property double slipSkid: 0
+
+  // Visual deflection at full scale.
+  readonly property double turnRateFullScaleAngle: 20
+  readonly property double slipSkidFullScaleAngle: 15
 
   BasicSixImage {
     anchors.fill: parent
@@ -25,7 +31,7 @@ Item {
         y: 0
         z: 1
       }
-      angle: slipSkid
+      angle: slipSkidFullScaleAngle * slipSkid
     }
   }
 
@@ -42,7 +48,7 @@ Item {
   BasicSixImage {
     anchors.fill: parent
     source: "qrc:/images/tc_mark.svg"
-    rotation: (turnRate / 3.0) * 20.0
+    rotation: turnRateFullScaleAngle * turnRate
   }
 
   BasicSixImage {

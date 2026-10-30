@@ -81,9 +81,12 @@ class PrimaryFlightData : public QObject {
   double heading() const;
   void setHeading(double newHeading);
 
+  /// Normalized lateral slip/skid indication, clamped to [-1, 1].
   double slipSkid() const;
   void setSlipSkid(double newSlipSkid);
 
+  /// Normalized turn rate, clamped to [-1, 1].
+  /// 1.0 corresponds to a standard rate turn (3 deg/s).
   double turnRate() const;
   void setTurnRate(double newTurnRate);
 

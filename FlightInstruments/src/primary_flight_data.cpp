@@ -37,6 +37,15 @@ PrimaryFlightData::PrimaryFlightData(QObject *parent)
     , mIlsGSVisible(false)
     , mFdVisible(false)
     , mStall(false)
+    , mLeftTankFuel(0)
+    , mRightTankFuel(0)
+    , mEgt(0)
+    , mFuelFlow(0)
+    , mEngineTemperature(0)
+    , mEnginePressure(0)
+    , mVac(0)
+    , mAmp(0)
+    , mRpm(0)
 {}
 
 double PrimaryFlightData::angleOfAttack() const
