@@ -87,7 +87,7 @@ Item {
     // the horizon filled at 90/180/270 degrees instead of exposing black.
     Rectangle {
       x: -495
-      y: -600
+      y: -390
       width: 1200
       height: 600
       color: "#2f7fd3"
@@ -95,7 +95,7 @@ Item {
 
     Rectangle {
       x: -495
-      y: 0
+      y: 210
       width: 1200
       height: 600
       color: "#7a4f24"
@@ -103,7 +103,7 @@ Item {
 
     Rectangle {
       x: -495
-      y: -1
+      y: 209
       width: 1200
       height: 2
       color: "#d8d8d8"
