@@ -96,11 +96,6 @@ void PrimaryFlightData::setRoll(double newRoll)
     if (std::isnan(newRoll) || qFuzzyCompare(mRoll, newRoll))
         return;
 
-    if (newRoll < -180)
-        newRoll = -180;
-    else if (newRoll > 180)
-        newRoll = 180;
-
     mRoll = newRoll;
     emit rollChanged();
 }
@@ -114,11 +109,6 @@ void PrimaryFlightData::setPitch(double newPitch)
 {
     if (std::isnan(newPitch) || qFuzzyCompare(mPitch, newPitch))
         return;
-
-    if (newPitch < -90)
-        newPitch = -90;
-    else if (newPitch > 90)
-        newPitch = 90;
 
     mPitch = newPitch;
     emit pitchChanged();

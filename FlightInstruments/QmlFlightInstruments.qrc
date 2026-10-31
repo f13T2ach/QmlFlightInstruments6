@@ -13,6 +13,7 @@
     <file alias="AirspeedIndicatorEadi.qml">qml/efis/eadi/airspeed_indicator.qml</file>
     <file alias="AltimeterEadi.qml">qml/efis/eadi/altimeter.qml</file>
     <file alias="AttitudeIndicatorEadi.qml">qml/efis/eadi/attitude_indicator.qml</file>
+    <file alias="shaders/eadi_horizon.frag.qsb">shaders/eadi_horizon.frag.qsb</file>
     <file alias="EadiImage.qml">qml/efis/eadi/eadi_image.qml</file>
     <file alias="ElectronicAttitudeDirectionIndicator.qml">qml/efis/eadi/electronic_attitude_direction_indicator.qml</file>
     <file alias="HeadingIndicatorEadi.qml">qml/efis/eadi/heading_indicator.qml</file>

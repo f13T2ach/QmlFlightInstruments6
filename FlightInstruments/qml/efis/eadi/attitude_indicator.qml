@@ -60,55 +60,16 @@ Item {
     fdDeltaY = temp * pixelPerDegree * Math.cos(roll * Math.PI / 180)
   }
 
-  Item {
+  ShaderEffect {
     id: back
     x: 45
     y: -85
     width: 210
     height: 420
-    transform: [
-      Rotation {
-        origin.x: (150 - 45)
-        origin.y: (125 + 85)
-        axis {
-          x: 0
-          y: 0
-          z: 1
-        }
-        angle: -roll + (inverted ? 180 : 0)
-      },
-      Translate {
-        x: backDeltaY * Math.sin(roll * Math.PI / 180)
-        y: backDeltaY * Math.cos(roll * Math.PI / 180)
-      }
-    ]
 
-    // A large sky/ground plane rather than a finite 420 px image. This keeps
-    // the horizon filled at 90/180/270 degrees instead of exposing black.
-    Rectangle {
-      x: -495
-      y: -390
-      width: 1200
-      height: 600
-      color: "#2f7fd3"
-    }
-
-    Rectangle {
-      x: -495
-      y: 210
-      width: 1200
-      height: 600
-      color: "#7a4f24"
-    }
-
-    Rectangle {
-      x: -495
-      y: 209
-      width: 1200
-      height: 2
-      color: "#d8d8d8"
-      opacity: 0.65
-    }
+    fragmentShader: "qrc:/qml/shaders/eadi_horizon.frag.qsb"
+    property real pitchRad: pitch * Math.PI / 180
+    property real rollRad: roll * Math.PI / 180
   }
 
   EadiImage {
