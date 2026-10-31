@@ -29,19 +29,27 @@ Item {
   property double backDeltaY: 0
   property double fdDeltaX: 0
   property double fdDeltaY: 0
+  property double displayPitch: 0
+  property bool inverted: false
 
   onPitchChanged: update()
   onFdPitchChanged: update()
 
   function update() {
-    backDeltaY = pixelPerDegree * pitch
+    // Wrap pitch into -180..180. Past 90 degrees the aircraft is inverted;
+    // flip the horizon instead of clamping the instrument at +-17 degrees.
+    var p = pitch
+    p = p - 360 * Math.floor((p + 180) / 360)
+    inverted = (p >= 90 || p <= -90)
+    displayPitch = p
+    if (p > 90)
+      displayPitch = 180 - p
+    else if (p < -90)
+      displayPitch = -180 - p
 
-    if (backDeltaY > 52.5)
-      backDeltaY = 52.5
-    else if (backDeltaY < -52.5)
-      backDeltaY = -52.5
+    backDeltaY = pixelPerDegree * displayPitch
 
-    var temp = pitch - fdPitch
+    var temp = displayPitch - fdPitch
 
     if (temp < -17.0)
       temp = -17.0
@@ -52,15 +60,12 @@ Item {
     fdDeltaY = temp * pixelPerDegree * Math.cos(roll * Math.PI / 180)
   }
 
-  EadiImage {
+  Item {
     id: back
     x: 45
     y: -85
     width: 210
     height: 420
-    source: "qrc:/images/eadi_adi_back.svg"
-    sourceSize.height: 1680
-    sourceSize.width: 840
     transform: [
       Rotation {
         origin.x: (150 - 45)
@@ -70,13 +75,40 @@ Item {
           y: 0
           z: 1
         }
-        angle: -roll
+        angle: -roll + (inverted ? 180 : 0)
       },
       Translate {
         x: backDeltaY * Math.sin(roll * Math.PI / 180)
         y: backDeltaY * Math.cos(roll * Math.PI / 180)
       }
     ]
+
+    // A large sky/ground plane rather than a finite 420 px image. This keeps
+    // the horizon filled at 90/180/270 degrees instead of exposing black.
+    Rectangle {
+      x: -495
+      y: -600
+      width: 1200
+      height: 600
+      color: "#2f7fd3"
+    }
+
+    Rectangle {
+      x: -495
+      y: 0
+      width: 1200
+      height: 600
+      color: "#7a4f24"
+    }
+
+    Rectangle {
+      x: -495
+      y: -1
+      width: 1200
+      height: 2
+      color: "#d8d8d8"
+      opacity: 0.65
+    }
   }
 
   EadiImage {
@@ -96,12 +128,12 @@ Item {
           y: 0
           z: 1
         }
-        angle: -roll
+        angle: -roll + (inverted ? 180 : 0)
       },
 
       Translate {
-        x: pixelPerDegree * pitch * Math.sin(roll * Math.PI / 180)
-        y: pixelPerDegree * pitch * Math.cos(roll * Math.PI / 180)
+        x: pixelPerDegree * displayPitch * Math.sin(roll * Math.PI / 180)
+        y: pixelPerDegree * displayPitch * Math.cos(roll * Math.PI / 180)
       }
     ]
   }
